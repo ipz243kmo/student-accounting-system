@@ -1,0 +1,49 @@
+﻿<Window x:Class="StudentAccounting.AddTeacherWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Додати викладача" Height="400" Width="400">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Margin="0,5">
+            <Label Content="Ім'я:" Width="100"/>
+            <TextBox x:Name="FirstNameTextBox" Width="250"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="1">
+            <Label Content="Прізвище:" Width="100"/>
+            <TextBox x:Name="LastNameTextBox" Width="250"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="2">
+            <Label Content="Email:" Width="100"/>
+            <TextBox x:Name="EmailTextBox" Width="250"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="3">
+            <Label Content="Посада:" Width="100"/>
+            <TextBox x:Name="PositionTextBox" Width="250"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="4">
+            <Label Content="Предмет:" Width="100"/>
+            <TextBox x:Name="SubjectTextBox" Width="250"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="5">
+            <Label Content="Факультет:" Width="100"/>
+            <ComboBox x:Name="FacultyComboBox" Width="250" DisplayMemberPath="Name" SelectedValuePath="Id"/>
+        </StackPanel>
+
+        <Button Content="Додати викладача" Width="150" Height="30" Grid.Row="6" HorizontalAlignment="Center" Margin="0,20,0,0"
+                Click="AddTeacherButton_Click"/>
+    </Grid>
+</Window>

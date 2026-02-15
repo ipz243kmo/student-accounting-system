@@ -1,0 +1,44 @@
+﻿<Window x:Class="StudentAccounting.AddStudentToCourseWindow"
+xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+Title="Додати студента на курс" Height="360" Width="480" WindowStartupLocation="CenterOwner">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+        <StackPanel Grid.Row="0" Margin="0,0,0,8">
+            <TextBlock Text="Факультет"/>
+            <ComboBox x:Name="FacultyFilterComboBox" SelectionChanged="FacultyFilterComboBox_SelectionChanged"/>
+        </StackPanel>
+
+
+        <StackPanel Grid.Row="1" Margin="0,0,0,8">
+            <TextBlock Text="Група"/>
+            <ComboBox x:Name="GroupFilterComboBox" SelectionChanged="GroupFilterComboBox_SelectionChanged"/>
+        </StackPanel>
+
+
+        <StackPanel Grid.Row="2" Margin="0,0,0,8">
+            <TextBlock Text="Студент"/>
+            <ComboBox x:Name="StudentsComboBox" DisplayMemberPath="DisplayName"/>
+        </StackPanel>
+
+
+        <StackPanel Grid.Row="3" Margin="0,0,0,8">
+            <TextBlock Text="Курс"/>
+            <ComboBox x:Name="CoursesComboBox" DisplayMemberPath="DisplayName"/>
+        </StackPanel>
+
+
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+            <Button Content="OK" Width="90" Margin="0,0,10,0" Click="OkButton_Click"/>
+            <Button Content="Скасувати" Width="90" Click="CancelButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

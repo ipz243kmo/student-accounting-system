@@ -1,0 +1,79 @@
+﻿<Window x:Class="StudentAccounting.StudentAddWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Додати студента"
+        Height="500" Width="400"
+        WindowStartupLocation="CenterOwner">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Ім'я -->
+            <RowDefinition Height="Auto"/>
+            <!-- Прізвище -->
+            <RowDefinition Height="Auto"/>
+            <!-- Форма навчання -->
+            <RowDefinition Height="Auto"/>
+            <!-- Фінансування -->
+            <RowDefinition Height="Auto"/>
+            <!-- Факультет -->
+            <RowDefinition Height="Auto"/>
+            <!-- Кафедра -->
+            <RowDefinition Height="Auto"/>
+            <!-- Група -->
+            <RowDefinition Height="Auto"/>
+            <!-- Дата вступу -->
+            <RowDefinition Height="Auto"/>
+            <!-- Дата випуску -->
+            <RowDefinition Height="*"/>
+            <!-- Кнопки -->
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Ім'я -->
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Ім'я:" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="0" Grid.Column="1" x:Name="FirstNameTextBox"/>
+
+        <!-- Прізвище -->
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Прізвище:" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="1" Grid.Column="1" x:Name="LastNameTextBox"/>
+
+        <!-- Форма навчання -->
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Форма навчання:" VerticalAlignment="Center"/>
+        <ComboBox Grid.Row="2" Grid.Column="1" x:Name="StudyFormComboBox"/>
+
+        <!-- Фінансування -->
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Фінансування:" VerticalAlignment="Center"/>
+        <ComboBox Grid.Row="3" Grid.Column="1" x:Name="FundingComboBox"/>
+
+        <!-- Факультет -->
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="Факультет:" VerticalAlignment="Center"/>
+        <ComboBox Grid.Row="4" Grid.Column="1" x:Name="FacultyComboBox"/>
+
+        <!-- Кафедра -->
+        <TextBlock Grid.Row="5" Grid.Column="0" Text="Кафедра:" VerticalAlignment="Center"/>
+        <ComboBox Grid.Row="5" Grid.Column="1" x:Name="DepartmentComboBox"/>
+
+        <!-- Група -->
+        <TextBlock Grid.Row="6" Grid.Column="0" Text="Група:" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="6" Grid.Column="1" x:Name="GroupTextBox"/>
+
+        <!-- Дата вступу -->
+        <TextBlock Grid.Row="7" Grid.Column="0" Text="Дата вступу:" VerticalAlignment="Center"/>
+        <DatePicker Grid.Row="7" Grid.Column="1" x:Name="EnrollmentDatePicker"/>
+
+        <!-- Дата випуску -->
+        <TextBlock Grid.Row="8" Grid.Column="0" Text="Дата випуску:" VerticalAlignment="Center"/>
+        <DatePicker Grid.Row="8" Grid.Column="1" x:Name="GraduationDatePicker"/>
+
+        <!-- Кнопки -->
+        <StackPanel Grid.Row="9" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+            <Button Content="Додати" Width="100" Height="30" Margin="0,0,10,0" Click="SaveButton_Click"/>
+            <Button Content="Скасувати" Width="100" Height="30" Click="CancelButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

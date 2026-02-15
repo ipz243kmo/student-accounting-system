@@ -1,0 +1,47 @@
+﻿<Window x:Class="StudentAccounting.AddLessonWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Додати пару" Height="300" Width="400">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Група:" Grid.Row="0" VerticalAlignment="Center"/>
+        <ComboBox x:Name="GroupComboBox" Grid.Row="0" Margin="80,0,0,0" Width="200"/>
+
+        <TextBlock Text="День:" Grid.Row="1" VerticalAlignment="Center"/>
+        <ComboBox x:Name="DayComboBox" Grid.Row="1" Margin="80,0,0,0" Width="200">
+            <ComboBoxItem Content="Понеділок"/>
+            <ComboBoxItem Content="Вівторок"/>
+            <ComboBoxItem Content="Середа"/>
+            <ComboBoxItem Content="Четвер"/>
+            <ComboBoxItem Content="П'ятниця"/>
+            <ComboBoxItem Content="Субота"/>
+            <ComboBoxItem Content="Неділя"/>
+        </ComboBox>
+
+        <TextBlock Text="Час початку:" Grid.Row="2" VerticalAlignment="Center"/>
+        <TextBox x:Name="StartTimeTextBox" Grid.Row="2" Margin="80,0,0,0" Width="200"/>
+
+        <TextBlock Text="Час кінця:" Grid.Row="3" VerticalAlignment="Center"/>
+        <TextBox x:Name="EndTimeTextBox" Grid.Row="3" Margin="80,0,0,0" Width="200"/>
+
+        <TextBlock Text="Предмет:" Grid.Row="4" VerticalAlignment="Center"/>
+        <TextBox x:Name="SubjectTextBox" Grid.Row="4" Margin="80,0,0,0" Width="200"/>
+
+        <TextBlock Text="Аудиторія:" Grid.Row="5" VerticalAlignment="Center"/>
+        <TextBox x:Name="RoomTextBox" Grid.Row="5" Margin="80,0,0,0" Width="200"/>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="6" Margin="0,10,0,0">
+            <Button Content="Додати" Width="80" Margin="0,0,10,0" Click="AddButton_Click"/>
+            <Button Content="Скасувати" Width="80" Click="CancelButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

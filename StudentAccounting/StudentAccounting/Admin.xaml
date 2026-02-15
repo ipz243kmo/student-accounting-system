@@ -1,0 +1,153 @@
+﻿<Window x:Class="StudentAccounting.Admin" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="Адміністратор" Height="600" Width="900">
+    <Grid Margin="10">
+        <TabControl>
+            <TabItem Header="Викладачі">
+                <DockPanel Margin="10">
+
+                    <!-- Фільтри за факультетом, предметом та посадою -->
+                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,10">
+                        <TextBlock Text="Факультет:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                        <ComboBox x:Name="FilterFacultyComboBox" Width="150" SelectionChanged="TeacherFilter_Changed"/>
+
+                        <TextBlock Text="Предмет:" VerticalAlignment="Center" Margin="10,0,5,0"/>
+                        <ComboBox x:Name="FilterSubjectComboBox" Width="150" SelectionChanged="TeacherFilter_Changed"/>
+
+                        <TextBlock Text="Посада:" VerticalAlignment="Center" Margin="10,0,5,0"/>
+                        <ComboBox x:Name="FilterPositionComboBox" Width="150" SelectionChanged="TeacherFilter_Changed"/>
+                    </StackPanel>
+
+                    <!-- Кнопки CRUD -->
+                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,10">
+                        <Button Content="Додати" Width="80" Margin="0,0,5,0" Click="AddTeacher_Click"/>
+                        <Button Content="Редагувати" Width="80" Margin="0,0,5,0" Click="EditTeacher_Click"/>
+                        <Button Content="Видалити" Width="80" Click="DeleteTeacher_Click"/>
+                        <TextBlock Text="{Binding TeachersCountText}" Margin="20,0,0,0" VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <!-- DataGrid для викладачів -->
+                    <DataGrid x:Name="TeachersDataGrid" AutoGenerateColumns="False" CanUserAddRows="False"
+                  SelectionChanged="TeachersDataGrid_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
+                            <DataGridTextColumn Header="Ім'я" Binding="{Binding Name}" Width="*"/>
+                            <DataGridTextColumn Header="Предмет" Binding="{Binding Subject}" Width="*"/>
+                            <DataGridTextColumn Header="Посада" Binding="{Binding Position}" Width="*"/>
+                            <DataGridTextColumn Header="Факультет" Binding="{Binding Faculty}" Width="150"/>
+                            <DataGridTextColumn Header="Кафедра" Binding="{Binding Department}" Width="150"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </DockPanel>
+            </TabItem>
+
+            <!-- Вкладка Студенти -->
+            <TabItem Header="Студенти">
+                <DockPanel Margin="10">
+                    <!-- Фільтри -->
+                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,10" VerticalAlignment="Top">
+                        <TextBlock Text="Факультет:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                        <ComboBox x:Name="FilterFacultiesComboBox" Width="120" SelectionChanged="Filter_Changed"/>
+                        <TextBlock Text="Група:" VerticalAlignment="Center" Margin="10,0,5,0"/>
+                        <ComboBox x:Name="FilterGroupComboBox" Width="100" SelectionChanged="Filter_Changed"/>
+                        <TextBlock Text="Форма навчання:" VerticalAlignment="Center" Margin="10,0,5,0"/>
+                        <ComboBox x:Name="FilterStudyFormComboBox" Width="100" SelectionChanged="Filter_Changed"/>
+                        <TextBlock Text="Фінансування:" VerticalAlignment="Center" Margin="10,0,5,0"/>
+                        <ComboBox x:Name="FilterFinanceComboBox" Width="100" SelectionChanged="Filter_Changed"/>
+                        <TextBlock x:Name="StudentsCountText" Margin="20,0,0,0" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <!-- Кнопки CRUD -->
+                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,10">
+                        <Button Content="Додати" Width="80" Margin="0,0,5,0" Click="AddStudent_Click"/>
+                        <Button Content="Редагувати" Width="80" Margin="0,0,5,0" Click="EditStudent_Click"/>
+                        <Button Content="Видалити" Width="80" Click="DeleteStudent_Click"/>
+                    </StackPanel>
+                    <!-- DataGrid -->
+                    <DataGrid x:Name="StudentsDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
+                            <DataGridTextColumn Header="Ім'я" Binding="{Binding Name}" Width="*"/>
+                            <DataGridTextColumn Header="Форма навчання" Binding="{Binding StudyForm}" Width="120"/>
+                            <DataGridTextColumn Header="Факультет" Binding="{Binding Faculty}" Width="120"/>
+                            <DataGridTextColumn Header="Кафедра" Binding="{Binding Department}" Width="120"/>
+                            <DataGridTextColumn Header="Група" Binding="{Binding Group}" Width="80"/>
+                            <DataGridTextColumn Header="Фінансування" Binding="{Binding FinanceType}" Width="100"/>
+                            <DataGridTextColumn Header="Зарахування" Binding="{Binding EnrollmentDate, StringFormat=d}" Width="100"/>
+                            <DataGridTextColumn Header="Закінчення" Binding="{Binding GraduationDate, StringFormat=d}" Width="100"/>
+                            <DataGridCheckBoxColumn Header="Дві спеціальності" Binding="{Binding DualSpeciality}" Width="120"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="Факультети / Спеціальності">
+                <DockPanel Margin="10">
+                    <!-- Панель кнопок CRUD + пошук -->
+                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,10">
+                        <Button Content="Додати факультет" Width="120" Margin="0,0,5,0" Click="AddFaculty_Click"/>
+                        <Button Content="Редагувати" Width="80" Margin="0,0,5,0" Click="EditFaculty_Click"/>
+                        <Button Content="Видалити" Width="80" Margin="0,0,10,0" Click="DeleteFaculty_Click"/>
+                        <Button Content="Макс спеціальностей" Width="150" Margin="0,0,5,0" Click="MaxDepartments_Click"/>
+                        <Button Content="Мін спец." Width="120" Margin="0,0,5,0" Click="MinDepartments_Click"/>
+                        <Button Content="Макс студентів" Width="150" Margin="0,0,5,0" Click="MaxStudents_Click"/>
+                        <Button Content="Мін студентів" Width="120" Click="MinStudents_Click"/>
+                    </StackPanel>
+                    <!-- DataGrid -->
+                    <DataGrid x:Name="FacultiesDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Факультет" Binding="{Binding Faculty}" Width="150"/>
+                            <DataGridTextColumn Header="Спеціальність" Binding="{Binding Department}" Width="150"/>
+                            <DataGridTextColumn Header="Кількість студентів" Binding="{Binding StudentCount}" Width="100"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="Курси">
+                <DockPanel Margin="10">
+                    <!-- Кнопки CRUD для курсів та студентів -->
+                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,10">
+                        <!-- Курси -->
+                        <Button Content="Додати курс" Width="100" Margin="0,0,5,0" Click="AddCourse_Click"/>
+                        <Button Content="Редагувати курс" Width="120" Margin="0,0,5,0" Click="EditCourse_Click"/>
+                        <Button Content="Видалити курс" Width="120" Margin="0,0,20,0" Click="DeleteCourse_Click"/>
+                        <!-- Студенти у курсі -->
+                        <Button Content="Додати студента" Width="120" Margin="0,0,5,0" Click="AddStudentToCourse_Click"/>
+                        <Button Content="Видалити студента" Width="140" Click="RemoveStudentFromCourse_Click"/>
+                    </StackPanel>
+                    <!-- DataGrid для курсів -->
+                    <DataGrid x:Name="CoursesDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Курс" Binding="{Binding CourseNumber}" Width="80"/>
+                            <DataGridTextColumn Header="Факультет" Binding="{Binding Faculty}" Width="150"/>
+                            <DataGridTextColumn Header="Спеціальність" Binding="{Binding Department}" Width="150"/>
+                            <DataGridTextColumn Header="Кількість студентів" Binding="{Binding StudentCount}" Width="120"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="Розклад">
+                <DockPanel Margin="10">
+                    <!-- Вибір групи -->
+                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,10">
+                        <TextBlock Text="Група:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                        <ComboBox x:Name="GroupComboBox" Width="150" SelectionChanged="GroupComboBox_SelectionChanged"/>
+                    </StackPanel>
+                    <!-- Кнопки CRUD для розкладу -->
+                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,10">
+                        <Button Content="Додати пару" Width="100" Margin="0,0,5,0" Click="AddLesson_Click"/>
+                        <Button Content="Редагувати пару" Width="120" Margin="0,0,5,0" Click="EditLesson_Click"/>
+                        <Button Content="Видалити пару" Width="120" Click="DeleteLesson_Click"/>
+                    </StackPanel>
+                    <!-- DataGrid для розкладу -->
+                    <DataGrid x:Name="ScheduleDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="День" Binding="{Binding Day}" Width="100"/>
+                            <DataGridTextColumn Header="Час" Binding="{Binding Time}" Width="100"/>
+                            <DataGridTextColumn Header="Предмет" Binding="{Binding Subject}" Width="200"/>
+                            
+                            <DataGridTextColumn Header="Аудиторія" Binding="{Binding Room}" Width="100"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
